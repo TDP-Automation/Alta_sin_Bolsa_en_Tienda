@@ -630,6 +630,9 @@ Sub TipoEnvio()
 
 End Sub
 Sub Financiamiento()
+	While JavaWindow("Ejecutivo de interacción").JavaInternalFrame("Negociar Pago (Orden 2986153A").JavaEdit("ID del cliente:").Exist = False
+		wait 1
+	Wend
 	Dim textID
 	textID=JavaWindow("Ejecutivo de interacción").JavaInternalFrame("Negociar Pago (Orden 2986153A").JavaEdit("ID del cliente:").GetROProperty ("text")		
     While textID=""
@@ -637,6 +640,13 @@ Sub Financiamiento()
     	textID=JavaWindow("Ejecutivo de interacción").JavaInternalFrame("Negociar Pago (Orden 2986153A").JavaEdit("ID del cliente:").GetROProperty ("text")
     Wend
     	wait 1
+    	
+
+   	Dim finExterno
+	finExterno = JavaWindow("Ejecutivo de interacción").JavaInternalFrame("Negociar Pago (Orden 2986153A").JavaCheckBox("Financiamiento Externo").GetROProperty("enabled")
+	If JavaWindow("Ejecutivo de interacción").JavaInternalFrame("Negociar Pago (Orden 2986153A").JavaCheckBox("Financiamiento Externo").Exist = True and finExterno = "1" Then
+		JavaWindow("Ejecutivo de interacción").JavaInternalFrame("Negociar Pago (Orden 2986153A").JavaCheckBox("Financiamiento Externo").Set "OFF"
+	End If
     
 	If JavaWindow("Ejecutivo de interacción").JavaInternalFrame("Negociar Pago (Orden 2986153A").JavaButton("Límite de Compra").Exist Then
 		JavaWindow("Ejecutivo de interacción").CaptureBitmap RutaEvidencias() &Num_Iter&"_"&"Negociar Pago"&".png" , True
