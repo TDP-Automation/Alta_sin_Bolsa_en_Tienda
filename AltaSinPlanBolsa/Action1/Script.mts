@@ -46,6 +46,7 @@ Call GeneracionOrden()
 'Call DetalleActividadOrden()
 '
 Sub EncontrarAcuerdoComercial()
+		wait 10
 		Do
 		tiempo=0
 		Do
